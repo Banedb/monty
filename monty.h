@@ -47,4 +47,13 @@ void push(int num, stack_t **head);
 void run_opcode(stack_t **head, char *opcode, unsigned int ln);
 void stack_div(stack_t **head, unsigned int ln);
 void sub(stack_t **head, unsigned int ln);
+
+void add(stack_t **stk, unsigned int l);
+void swap(stack_t **stk, unsigned int l);
+void nop(void);
+void rotl(stack_t **stk);
+void rotr(stack_t **stk);
+void queue(stack_t **h);
+void execute_op(stack_t **stack, const char *op, unsigned int ln);
+void exit_f(unsigned int ln, char *op, stack_t *h);
 #endif
