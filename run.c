@@ -52,7 +52,7 @@ void pop(stack_t **head, unsigned int ln)
 
 	if (!(*head))
 	{
-		fprintf(stderr, "L%u: can't pop an empty stack", ln);
+		fprintf(stderr, "L%u: can't pop an empty stack\n", ln);
 		exit(EXIT_FAILURE);
 	}
 	*head = (*head)->next;
@@ -70,7 +70,7 @@ void sub(stack_t **head, unsigned int ln)
 
 	if (!head || !(*head) || !(*head)->next)
 	{
-		fprintf(stderr, "L%u: can't sub, stack too short", ln);
+		fprintf(stderr, "L%u: can't sub, stack too short\n", ln);
 		exit(EXIT_FAILURE);
 	}
 
@@ -91,13 +91,13 @@ void stack_div(stack_t **head, unsigned int ln)
 
 	if (!head || !(*head) || !(*head)->next)
 	{
-		fprintf(stderr, "L%u: can't div, stack too short", ln);
+		fprintf(stderr, "L%u: can't div, stack too short\n", ln);
 		exit(EXIT_FAILURE);
 	}
 	top = *head;
 	if (top->n == 0)
 	{
-		fprintf(stderr, "L%u: division by zero", ln);
+		fprintf(stderr, "L%u: division by zero\n", ln);
 		exit(EXIT_FAILURE);
 	}
 	top->next->n /= top->n;
