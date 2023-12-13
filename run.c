@@ -27,7 +27,7 @@ void handle_opcode(stack_t **head, char *opcode, unsigned int ln)
 }
 
 /**
- * pint - prints value of TOS
+ * pint - prints value at TOS
  * @head: pointer to top of stack
  * @ln: line number
 */
@@ -35,7 +35,7 @@ void pint(stack_t *head, unsigned int ln)
 {
 	if (!head)
 	{
-		fprintf(stderr, "L%u: can't pint, stack empty", ln);
+		fprintf(stderr, "L%u: can't pint, stack empty\n", ln);
 		exit(EXIT_FAILURE);
 	}
 	printf("%d\n", head->n);
