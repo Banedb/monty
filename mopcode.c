@@ -28,7 +28,7 @@ void add(stack_t **stk, unsigned int l)
 
 	if (!stk || !(*stk) || !(*stk)->next)
 	{
-		fprintf(stderr, "L%d: can't add, stack too short", l);
+		fprintf(stderr, "L%d: can't add, stack too short\n", l);
 		exit(EXIT_FAILURE);
 	}
 
