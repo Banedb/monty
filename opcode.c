@@ -10,7 +10,7 @@ void mul(stack_t **head, unsigned int ln)
 
 	if (!head || !(*head) || !(*head)->next)
 	{
-		fprintf(stderr, "L%u: can't mul, stack too short", ln);
+		fprintf(stderr, "L%u: can't mul, stack too short\n", ln);
 		exit(EXIT_FAILURE);
 	}
 	top = *head;
@@ -29,13 +29,13 @@ void mod(stack_t **head, unsigned int ln)
 
 	if (!head || !(*head) || !(*head)->next)
 	{
-		fprintf(stderr, "L%u: can't mod, stack too short", ln);
+		fprintf(stderr, "L%u: can't mod, stack too short\n", ln);
 		exit(EXIT_FAILURE);
 	}
 	top = *head;
 	if (top->n == 0)
 	{
-		fprintf(stderr, "L%u: division by zero", ln);
+		fprintf(stderr, "L%u: division by zero\n", ln);
 		exit(EXIT_FAILURE);
 	}
 	top->next->n %= top->n;
@@ -51,12 +51,12 @@ void pchar(stack_t **head, unsigned int ln)
 {
 	if (!head || !(*head))
 	{
-		fprintf(stderr, "L%u: can't pchar, stack empty", ln);
+		fprintf(stderr, "L%u: can't pchar, stack empty\n", ln);
 		exit(EXIT_FAILURE);
 	}
 	if ((*head)->n < 0 || (*head)->n > 127)
 	{
-		fprintf(stderr, "L%u: can't pchar, value out of range", ln);
+		fprintf(stderr, "L%u: can't pchar, value out of range\n", ln);
 		exit(EXIT_FAILURE);
 	}
 	printf("%c\n", (char)(*head)->n);
