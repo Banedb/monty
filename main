@@ -7,25 +7,16 @@
  */
 void push(int num, stack_t **head)
 {
-	stack_t *tmp;
-        if (!head)
-                return;
-        tmp = malloc(sizeof(stack_t));
-        if (!tmp)
+	stack_t *stack = malloc(sizeof(stack_t));
+
+	if (stack == NULL)
 	{
-                fprintf(stderr, "Error: malloc failed\n");
-                exit(EXIT_FAILURE);
-        }
-        tmp->n = num;
-        tmp->prev = NULL;
-        if (*head)
-        {
-                tmp->next = *head;
-                (*head)->prev = tmp;
-        }
-        else
-                tmp->next = NULL;
-        *head = tmp;
+		fprintf(stderr, "Error: malloc failed\n");
+		exit(EXIT_FAILURE);
+	}
+	stack->n = num;
+	stack->next = *head;
+	*head = stack;
 }
 
 
