@@ -45,13 +45,19 @@ int main(int argc, char **argv)
 	char *opcode = NULL, line[1024], *delim = " \n\t\r";
 	unsigned int ln = 1;
 	stack_t *head = NULL;
-	FILE *file = fopen(argv[1], "r");
+	FILE *file;
 
-	if (argc != 2 || file == NULL)
+	if (argc != 2)
 	{
 		fprintf(stderr, "USAGE: monty file\n");
 		return (EXIT_FAILURE);
 	}
+	file = fopen(argv[1], "r");
+	if (!file)
+	{
+		fprintf(stderr, "USAGE: monty file\n");
+                return (EXIT_FAILURE);
+        }
 	for (; fgets(line, sizeof(line), file) != NULL; ln++)
 	{
 		opcode = strtok(line, delim);
