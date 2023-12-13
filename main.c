@@ -65,7 +65,7 @@ int main(int argc, char **argv)
 		opcode = strtok(line, delim);
 		if (!opcode)
 			continue;
-		run_opcode(&head, opcode, ln);
+		handle_opcode(&head, opcode, ln);
 	}
 	fclose(file);
 	free_stack(head);

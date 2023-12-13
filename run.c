@@ -1,11 +1,11 @@
 #include "monty.h"
 /**
- * run_opcode - implement opcodes
+ * handle_opcode - implement opcodes
  * @head: pointer to top of stack
  * @opcode: ..
  * @ln: line number
  */
-void run_opcode(stack_t **head, char *opcode, unsigned int ln)
+void handle_opcode(stack_t **head, char *opcode, unsigned int ln)
 {
 	int value;
 	char *str_val = NULL, *delim = " \n\t\r";
@@ -22,30 +22,8 @@ void run_opcode(stack_t **head, char *opcode, unsigned int ln)
 		value = atoi(str_val);
 		push(value, head);
 	}
-	else if (strcmp(opcode, "pall") == 0)
-		print_all(*head);
-	else if (strcmp(opcode, "pint") == 0)
-		pint(*head, ln);
-	else if (strcmp(opcode, "pop") == 0)
-		pop(head, ln);
-	else if (strcmp(opcode, "sub") == 0)
-		sub(head, ln);
-	else if (strcmp(opcode, "div") == 0)
-		stack_div(head, ln);
-	else if (strcmp(opcode, "mul") == 0)
-		mul(head, ln);
-	else if (strcmp(opcode, "mod") == 0)
-		mod(head, ln);
-	else if (strcmp(opcode, "pchar") == 0)
-		pchar(head, ln);
-	else if (strcmp(opcode, "pstr") == 0)
-		pstr(head);
 	else
-	{
-		fprintf(stderr,	"L%u: unknown instruction %s\n", ln, opcode);
-		free_stack(*head);
-		exit(EXIT_FAILURE);
-	}
+		execute_op(head, opcode, ln);
 }
 
 /**
