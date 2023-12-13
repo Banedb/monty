@@ -32,6 +32,14 @@ void run_opcode(stack_t **head, char *opcode, unsigned int ln)
 		sub(head, ln);
 	else if (strcmp(opcode, "div") == 0)
 		stack_div(head, ln);
+	else if (strcmp(opcode, "mul") == 0)
+		mul(head, ln);
+	else if (strcmp(opcode, "mod") == 0)
+		mod(head, ln);
+	else if (strcmp(opcode, "pchar") == 0)
+		pchar(head, ln);
+	else if (strcmp(opcode, "pstr") == 0)
+		pstr(head);
 	else
 	{
 		fprintf(stderr,	"L%u: unknown instruction %s\n", ln, opcode);

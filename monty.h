@@ -39,6 +39,8 @@ void free_stack(stack_t *head);
 void mod(stack_t **head, unsigned int ln);
 void mul(stack_t **head, unsigned int ln);
 void pint(stack_t *head, unsigned int ln);
+void pchar(stack_t **head, unsigned int ln);
+void pstr(stack_t **head);
 void pop(stack_t **head, unsigned int ln);
 void print_all(const stack_t *h);
 void push(int num, stack_t **head);
