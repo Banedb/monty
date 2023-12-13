@@ -36,6 +36,9 @@ typedef struct instruction_s
 
 int valid_num(const char *str);
 void free_stack(stack_t *head);
+void pint(stack_t *head, unsigned int ln);
+void pop(stack_t **head, unsigned int ln);
 void print_all(const stack_t *h);
 void push(int num, stack_t **head);
+void run_opcode(stack_t **head, char *opcode, unsigned int ln);
 #endif

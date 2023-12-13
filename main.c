@@ -35,15 +35,15 @@ void print_all(const stack_t *h)
 	}
 }
 /**
- * main - implement opcodes
+ * main - entry point
  * @argc: argument count
  * @argv: arguments
  * Return: 0 on success
  */
 int main(int argc, char **argv)
 {
-	char *opcode = NULL, line[1024], *delim = " \n\t\r", *str_val = NULL;
-	int value, ln = 1;
+	char *opcode = NULL, line[1024], *delim = " \n\t\r";
+	unsigned int ln = 1;
 	stack_t *head = NULL;
 	FILE *file = fopen(argv[1], "r");
 
@@ -57,27 +57,7 @@ int main(int argc, char **argv)
 		opcode = strtok(line, delim);
 		if (!opcode)
 			continue;
-		if (strcmp(opcode, "push") == 0)
-		{
-			str_val = strtok(NULL, delim);
-			if (valid_num(str_val) == 0)
-			{
-				fprintf(stderr, "L%d: usage: push integer\n", ln);
-				free_stack(head);
-				return (EXIT_FAILURE);
-			}
-			value = atoi(str_val);
-			push(value, &head);
-		}
-		else if (strcmp(opcode, "pall") == 0)
-			print_all(head);
-		else
-		{
-			fprintf(stderr,
-				"L%d: unknown instruction %s\n", ln, opcode);
-			free_stack(head);
-			return (EXIT_FAILURE);
-		}
+		run_opcode(&head, opcode, ln);
 	}
 	fclose(file);
 	free_stack(head);
