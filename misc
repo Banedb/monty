@@ -1,0 +1,56 @@
+#include "monty.h"
+/**
+ * free_stack - frees stack
+ * @head: pointer to stack
+ * Return: void
+ */
+void free_stack(stack_t *head)
+{
+	stack_t *current;
+
+	while (head != NULL)
+	{
+		current = head;
+		head = head->next;
+		free(current);
+	}
+}
+
+/**
+ * rotr - rotates stack to bottom
+ * @head: pointer to head of stack
+ */
+void rotr(stack_t **head)
+{
+        stack_t *first, *temp = *head;
+
+	if (!head || !(*head) || !(*head)->next)
+                return;
+        while (temp->next->next)
+                temp = temp->next;
+        first = temp->next;
+        temp->next = NULL;
+        first->next = *head;
+        *head = first;
+}
+
+
+/**
+ * rotl - moves TOS to rear, TOS1 to TOS
+ * @head: pointer to head of stack
+ * decription - rotl never fails
+ */
+void rotl(stack_t **head)
+{
+        stack_t *last, *temp;
+
+	if (!head || !(*head) || !(*head)->next)
+                return;
+        temp = *head;
+        *head = (*head)->next;
+        last = *head;
+        while (last->next)
+                last = last->next;
+        last->next = temp;
+        temp->next = NULL;
+}
