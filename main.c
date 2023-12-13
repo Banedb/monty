@@ -56,8 +56,8 @@ int main(int argc, char **argv)
 	if (!file)
 	{
 		fprintf(stderr, "USAGE: monty file\n");
-                return (EXIT_FAILURE);
-        }
+		return (EXIT_FAILURE);
+	}
 	for (; fgets(line, sizeof(line), file) != NULL; ln++)
 	{
 		opcode = strtok(line, delim);
