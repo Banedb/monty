@@ -61,11 +61,9 @@ int main(int argc, char **argv)
 	for (; fgets(line, sizeof(line), file) != NULL; ln++)
 	{
 		opcode = strtok(line, delim);
-		if (opcode[0] == '#') /* it's a comment */
-			continue;
 		if (!opcode)
 			continue;
-		if (line[0] == '#') /* it's a comment */
+		if (opcode[0] == '#') /* it's a comment */
 			continue;
 		handle_opcode(&head, opcode, ln);
 	}
