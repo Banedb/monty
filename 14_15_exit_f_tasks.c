@@ -42,29 +42,18 @@ void queue(stack_t **h)
  * @stk: Stack
  * Return: void
  */
-void rotr(stack_t **stk)
+void rotr(stack_t **head)
 {
-	stack_t *tmp, *curr;
+	stack_t *first, *temp = *head;
 
-	if (*stk != NULL && (*stk)->next != NULL)
-	{
-		return;
-	}
-
-	curr = *stk;
-
-	while (curr->next != NULL)
-	{
-		curr = curr->next;
-	}
-
-	tmp = curr->prev;
-	tmp->next = NULL;
-	curr->prev = NULL;
-	curr->next = *stk;
-	(*stk)->prev = curr;
-
-	*stk = curr;
+	if (!head || !(*head) || !(*head)->next)
+                return;
+        while (temp->next->next)
+                temp = temp->next;
+        first = temp->next;
+        temp->next = NULL;
+        first->next = *head;
+        *head = first;
 }
 
 /**
