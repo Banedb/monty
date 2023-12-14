@@ -10,6 +10,16 @@ void handle_opcode(stack_t **head, char *opcode, unsigned int ln)
 	int value;
 	char *str_val = NULL, *delim = " \n\t\r";
 
+	if (strcmp(opcode, "stack") == 0)
+	{
+		format = 0;
+		return;
+	}
+	else if (strcmp(opcode, "queue") == 0)
+	{
+		format = 1;
+		return;
+	}
 	if (strcmp(opcode, "push") == 0)
 	{
 		str_val = strtok(NULL, delim);
@@ -20,7 +30,10 @@ void handle_opcode(stack_t **head, char *opcode, unsigned int ln)
 			exit(EXIT_FAILURE);
 		}
 		value = atoi(str_val);
-		push(value, head);
+		if (format)
+			enqueue(value, head);
+		else
+			push(value, head);
 	}
 	else
 		execute_op(head, opcode, ln);
@@ -64,8 +77,6 @@ void execute_op(stack_t **head, char *opcode, unsigned int ln)
 		rotl(head);
 	else if (strcmp(opcode, "rotr") == 0)
 		rotr(head);
-	/* else if (strcmp(opcode, "queue") == 0) */
-	/* queue(head); */
 	else if (strcmp(opcode, "stack") == 0)
 		nop();
 	else
@@ -76,38 +87,39 @@ void execute_op(stack_t **head, char *opcode, unsigned int ln)
 	}
 }
 
-
 /**
- * queue - Do nothing
- * @h: Stack
- * Return: void
+ * enqueue - Enqueues an element into the queue
+ * @head: Pointer to the queue
+ * @n: Value to be enqueued
  */
-
-void queue(stack_t **h)
+void enqueue(int n, stack_t **head)
 {
-	stack_t *tmp;
+	stack_t *new_node, *temp;
 
-	if (*h == NULL || (*h)->next == NULL)
+	new_node = malloc(sizeof(stack_t));
+	if (new_node == NULL)
 	{
+		fprintf(stderr, "Error: malloc failed\n");
 		return;
 	}
-	tmp = *h;
 
-	while (tmp->next != NULL)
+	new_node->n = n;
+	new_node->next = NULL;
+
+	if (*head == NULL)
 	{
-		tmp = tmp->next;
+		new_node->prev = NULL;
+		*head = new_node;
+		return;
 	}
 
-	tmp->prev->next = NULL;
-	tmp->next = NULL;
-
-
-	/* Updating head to point to the front of the queue */
-	tmp->next = *h;
-	(*h)->prev = tmp;
-	*h = tmp;
-
+	temp = *head;
+	while (temp->next != NULL)
+		temp = temp->next;
+	temp->next = new_node;
+	new_node->prev = temp;
 }
+
 
 /**
  * stack_div - divides TOS1 by TOS

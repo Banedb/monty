@@ -32,6 +32,7 @@ int main(int argc, char **argv)
 	stack_t *head = NULL;
 	FILE *file;
 
+	format = 0;
 	if (argc != 2)
 	{
 		fprintf(stderr, "USAGE: monty file\n");

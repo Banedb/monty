@@ -33,7 +33,7 @@ typedef struct instruction_s
 	char *opcode;
 	void (*f)(stack_t **stack, unsigned int line_number);
 } instruction_t;
-
+int format;
 int valid_num(const char *str);
 void free_stack(stack_t *head);
 void mod(stack_t **head, unsigned int ln);
@@ -47,13 +47,11 @@ void push(int num, stack_t **head);
 void handle_opcode(stack_t **head, char *opcode, unsigned int ln);
 void stack_div(stack_t **head, unsigned int ln);
 void sub(stack_t **head, unsigned int ln);
-
+void enqueue(int n, stack_t **head);
 void add(stack_t **stk, unsigned int l);
 void swap(stack_t **stk, unsigned int l);
 void nop(void);
 void rotl(stack_t **stk);
 void rotr(stack_t **stk);
-void queue(stack_t **h);
 void execute_op(stack_t **head, char *opcode, unsigned int ln);
-void exit_f(unsigned int ln, char *op, stack_t *h);
 #endif
