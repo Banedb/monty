@@ -19,21 +19,6 @@ void push(int num, stack_t **head)
 	*head = stack;
 }
 
-
-/**
- * print_all - prints all elements of a listint_t list
- * @h: pointer to head of list
- */
-void print_all(const stack_t *h)
-{
-	const stack_t *current = h;
-
-	while (current != NULL)
-	{
-		printf("%i\n", current->n);
-		current = current->next;
-	}
-}
 /**
  * main - entry point
  * @argc: argument count
@@ -93,4 +78,22 @@ int valid_num(const char *str)
 	}
 
 	return (1);
+}
+
+
+/**
+ * free_stack - frees stack
+ * @head: pointer to stack
+ * Return: void
+ */
+void free_stack(stack_t *head)
+{
+	stack_t *current;
+
+	while (head != NULL)
+	{
+		current = head;
+		head = head->next;
+		free(current);
+	}
 }
