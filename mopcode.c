@@ -47,13 +47,14 @@ void add(stack_t **stk, unsigned int l)
 void swap(stack_t **head, unsigned int ln)
 {
 	int tmp;
-        if (!head || !(*head) || !(*head)->next)
+
+	if (!head || !(*head) || !(*head)->next)
 	{
 		fprintf(stderr, "L%d: can't swap, stack too short\n", ln);
 		exit(EXIT_FAILURE);
 	}
-        tmp = (*head)->n;
-        (*head)->n = (*head)->next->n;
+	tmp = (*head)->n;
+	(*head)->n = (*head)->next->n;
 	(*head)->next->n = tmp;
 }
 
