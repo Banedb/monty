@@ -33,7 +33,7 @@ int main(int argc, char **argv)
 			continue;
 		if (!strcmp("push", opcode))
 		{
-			num = strtok(NULL, " ");
+			num = strtok(NULL, " \n\t\r");
 			push(&stack, num, ln);
 		}
 		else

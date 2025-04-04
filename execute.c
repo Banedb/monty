@@ -46,6 +46,24 @@ void execute(stack_t **stack, char *opcode, unsigned int ln)
 			return;
 		}
 	}
-	fprintf(stderr, "L%d: unknown instruction %s\n", i, opcode);
+	fprintf(stderr, "L%d: unknown instruction %s\n", ln, opcode);
 	exit(EXIT_FAILURE);
+}
+
+/**
+ * free_stack - free dynamically allocated memory in stack
+ * @head: top of stack
+ *
+ */
+
+void free_stack(stack_t *head)
+{
+	stack_t *temp;
+
+	while (head)
+	{
+		temp = head;
+		head = head->next;
+		free(temp);
+	}
 }

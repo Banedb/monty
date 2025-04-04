@@ -9,21 +9,14 @@
  */
 void push(stack_t **top, char *s, unsigned int ln)
 {
-	int n, flag = 0;
+	int n;
 
-	if (!s)
+	if (!valid_num(s))
 	{
 		fprintf(stderr, "L%d: usage: push integer\n", ln);
 		exit(EXIT_FAILURE);
 	}
 	n = atoi(s);
-	if ((*s == '+' || *s == '-') && s[1] == '0')
-		flag = 1;
-	if (n == 0 && (*s != '0' && !flag))
-	{
-		fprintf(stderr, "L%d: usage: push integer\n", ln);
-		exit(EXIT_FAILURE);
-	}
 	if (format)
 		push_bottom(top, n);
 	else

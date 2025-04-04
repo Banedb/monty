@@ -57,7 +57,7 @@ void free_stack(stack_t *top);
 void print_reverse(stack_t *top);
 void push_top(stack_t **head, int n);
 void push_bottom(stack_t **head, int n);
-
+int valid_num(const char *str);
 
 
 #endif /* MONTY_H */
