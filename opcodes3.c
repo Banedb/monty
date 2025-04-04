@@ -85,7 +85,7 @@ void pstr(stack_t **top, unsigned int ln)
  */
 void rotl(stack_t **top, unsigned int ln)
 {
-	stack_t *current = *top, *temp = (*top)->next;
+	stack_t *current = *top, *temp;
 
 	if (!*top || !(*top)->next)
 		return;
@@ -93,6 +93,7 @@ void rotl(stack_t **top, unsigned int ln)
 	while (current->next)
 		current = current->next;
 
+	temp = (*top)->next;
 	current->next = *top;
 	(*top)->prev = current;
 	(*top)->next = NULL;
@@ -109,19 +110,20 @@ void rotl(stack_t **top, unsigned int ln)
  */
 void rotr(stack_t **top, unsigned int ln)
 {
-	stack_t *current = *top, *temp, *prev = NULL;
+	stack_t *last, *second_last;
 
-	if (!*top || !(*top)->next)
+	if (!top || !(*top) || !(*top)->next)
 		return;
 
-	while (current)
-	{
-		temp = current->next;
-		current->prev = temp;
-		current->next = prev;
-		prev = current;
-		current = temp;
-	}
-	*top = prev;
+	last = *top;
+	while (last->next)
+		last = last->next;
+
+	second_last = last->prev;
+	second_last->next = NULL;
+	last->prev = NULL;
+	last->next = *top;
+	(*top)->prev = last;
+	*top = last;
 	(void)ln;
 }
