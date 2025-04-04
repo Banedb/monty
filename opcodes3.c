@@ -60,8 +60,8 @@ void pstr(stack_t **top, unsigned int ln)
 
 	if (!*top)
 	{
-		fprintf(stderr, "L%d: can't pstr, stack empty\n", ln);
-		exit(EXIT_FAILURE);
+		printf("\n");
+		return;
 	}
 	while (current)
 	{
@@ -74,6 +74,7 @@ void pstr(stack_t **top, unsigned int ln)
 		current = current->next;
 	}
 	printf("\n");
+	(void)ln;
 }
 
 /**

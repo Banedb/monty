@@ -87,13 +87,14 @@ void pop(stack_t **top, unsigned int ln)
  */
 void swap(stack_t **top, unsigned int ln)
 {
-	stack_t *current = (*top)->next;
+	stack_t *current;
 
 	if (!*top || !(*top)->next)
 	{
 		fprintf(stderr, "L%d: can't swap, stack too short\n", ln);
 		exit(EXIT_FAILURE);
 	}
+	current = (*top)->next;
 	(*top)->next = (*top)->next->next;
 	(*top)->prev = current;
 	if ((*top)->next)
